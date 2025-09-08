@@ -74,16 +74,31 @@ export const getMatches = async (req, res) => {
     
     const matches = await findMatches(tripForMatching);
 
+    const enrichedMatches = matches.map(m => {
+      const trip = currentTrip.tripId === m.tripId ? currentTrip : null;
+      return {
+        ...m,
+        route_coordinates: trip ? currentTrip.route_coordinates : (trip ? [] : undefined)
+      };
+    });
+
     res.json({
       success: true,
       tripId,
       trip: {
         pickup_address: currentTrip.pickup_address,
         drop_address: currentTrip.drop_address,
-        departure_time: currentTrip.departure_time
+        departure_time: currentTrip.departure_time,
+        route_coordinates: currentTrip.route_coordinates
       },
-      total_matches: matches.length,
-      matches
+      total_matches: enrichedMatches.length,
+      matches: await Promise.all(matches.map(async match => {
+        const matchTrip = await Trip.findOne({ tripId: match.tripId });
+        return {
+          ...match,
+          route_coordinates: matchTrip?.route_coordinates || []
+        };
+      }))
     });
   } catch (error) {
     console.error("Error finding matches:", error);
