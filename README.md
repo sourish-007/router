@@ -10,7 +10,7 @@ An advanced live route matching algorithm that matches riders based on overlappi
 - **Route Deviation Control**: Limits additional distance to ≤15% of original route
 - **Real-time Visualization**: Interactive map showing route overlaps and matches
 
-![Route Matching Demo](./assets/image1.png)
+![Route Matching Demo](https://github.com/sourish-007/router/blob/main/frontend/src/assets/image1.png)
 
 ## Tech Stack
 
@@ -58,14 +58,14 @@ npm run dev
 
 Create `.env` in the backend directory:
 ```env
-MONGODB_URI=mongodb://localhost:27017/router
-GOOGLE_MAPS_API=your_google_maps_api_key
+MONGODB_URI=""
+GOOGLE_MAPS_API=""
 PORT=5000
 ```
 
 Create `.env` in the frontend directory:
 ```env
-VITE_MAPS_API_KEY=your_google_maps_api_key
+VITE_MAPS_API_KEY=""
 ```
 
 ### Running the Application
