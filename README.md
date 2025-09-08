@@ -44,14 +44,12 @@ cd sourish-007-router
 ```bash
 cd backend
 npm install
-npx nodemon index.js
 ```
 
 3. Install frontend dependencies
 ```bash
 cd ../frontend
 npm install
-npm run dev
 ```
 
 4. Set up environment variables
@@ -73,7 +71,7 @@ VITE_MAPS_API_KEY=""
 1. Start the backend server:
 ```bash
 cd backend
-node index.js
+npx nodemon index.js
 ```
 
 2. Start the frontend development server:
